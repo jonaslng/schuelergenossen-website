@@ -2,6 +2,11 @@ import { useState } from "react";
 import './App.css';
 import { IconButton, Menu } from "@mui/material"
 import React from "react";
+import Start from "./Start"
+import Shop from "./Shop"
+import Potato from "./Potato"
+import Team from "./Team"
+import Press from "./Press"
 
 function App() {
   const openNav = () => {
@@ -11,6 +16,13 @@ function App() {
     document.getElementById("mySidenav").style.width = "0";
   }
   const [site, setSite] = useState(1);
+  const content = [
+    <Start />,
+    <Shop />,
+    <Potato />,
+    <Team />,
+    <Press />
+  ]
 
   return (
     <div className="App">
@@ -23,7 +35,7 @@ function App() {
       </div>
       <div className='navbar-mobile'>
           <div id="mySidenav" className="sidenav-mobile">
-            <p class="closebtn" onClick={() => closeNav()}>&times;</p>
+            <p className="closebtn" onClick={() => closeNav()}>&times;</p>
             <p onClick={() => setSite(1)}>Home</p>
             <p onClick={() => setSite(2)}>Shop</p>
             <p onClick={() => setSite(3)}>Potato Company</p>
@@ -32,6 +44,7 @@ function App() {
         </div>
         <span className='material-icons md-36 md-dark' onClick={() => openNav()} color='primary'>menu</span>
       </div>
+      {content[site-1]}
     </div>
   );
 }
