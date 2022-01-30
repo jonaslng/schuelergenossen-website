@@ -17,7 +17,7 @@ function App() {
   }
   const [site, setSite] = useState(1);
   const content = [
-    <Start />,
+    <Start setSite={setSite}/>,
     <Shop />,
     <Potato />,
     <Team />,
