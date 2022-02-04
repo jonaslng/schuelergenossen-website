@@ -1,7 +1,48 @@
 @import url("https://fonts.googleapis.com/css2?family=Hind+Guntur:wght@600&family=Rubik:wght@600;800&family=Source+Sans+Pro:wght@700&family=Ubuntu:wght@700&display=swap");
 
+@font-face {
+  font-family: Cubano;
+  src: url("./fonts/cubano-regular-webfont.ttf");
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: #171a21;
+}
+.navbar {
+  background-color: rgba(36, 41, 54, 0.8);
+  width: 100%;
+  height: 9vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-logo {
+  height: 9vh;
+  margin: 5px 0 0 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.nav-text {
+  font-size: 3vh;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: "Cubano";
+  margin: 0 10px 0 10px;
+  cursor: pointer;
+}
+.nav-text:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+.content {
+  width: 100%;
+}
+.theme-switcher {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px 0 0 10px;
+  cursor: pointer;
 }
