@@ -4,7 +4,6 @@
   font-family: Cubano;
   src: url("./fonts/cubano-regular-webfont.ttf");
 }
-
 body {
   margin: 0;
   padding: 0;
@@ -19,6 +18,12 @@ body {
   align-items: center;
   justify-content: center;
 }
+.menu-mobile {
+  display: none;
+}
+.css-188ao8m-MuiSvgIcon-root {
+  display: none;
+}
 .nav-logo {
   height: 9vh;
   margin: 5px 0 0 10px;
@@ -27,7 +32,7 @@ body {
   left: 0;
 }
 .nav-text {
-  font-size: 3vh;
+  font-size: 150%;
   color: rgba(255, 255, 255, 0.5);
   font-family: "Cubano";
   margin: 0 10px 0 10px;
@@ -45,4 +50,19 @@ body {
   right: 0;
   margin: 5px 0 0 10px;
   cursor: pointer;
+}
+@media screen and (max-width: 780px) {
+  .nav-logo {
+    display: none;
+  }
+  .nav-text {
+    display: none;
+  }
+  .menu-mobile {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px 0 0 10px;
+  }
 }
