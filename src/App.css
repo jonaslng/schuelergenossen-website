@@ -18,10 +18,10 @@ body {
   align-items: center;
   justify-content: center;
 }
-.menu-mobile {
+.menu-items {
   display: none;
 }
-.css-188ao8m-MuiSvgIcon-root {
+.checkbox {
   display: none;
 }
 .nav-logo {
@@ -58,11 +58,82 @@ body {
   .nav-text {
     display: none;
   }
-  .menu-mobile {
-    display: inline-block;
+  .ham-menu {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px 0;
+  }
+  .hamburger-lines {
+    display: block;
+    height: 26px;
+    width: 32px;
     position: absolute;
-    top: 0;
-    left: 0;
-    margin: 5px 0 0 10px;
+    top: 17px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+  }
+  .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+    transition: transform 0.4s ease-in-out;
+  }
+  .hamburger-lines .line2 {
+    transition: transform 0.2s ease-in-out;
+  }
+  .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+    transition: transform 0.4s ease-in-out;
+  }
+  .menu-items {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 91vh;
+    width: 100%;
+    transform: translate(-150%);
+    flex-direction: column;
+    margin-left: -40px;
+    padding-left: 50px;
+    transition: transform 0.5s ease-in-out;
+    text-align: center;
+  }
+  .nav-text-mobile {
+    font-size: 150%;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: "Cubano";
+    margin: 0 10px 0 10px;
+    cursor: pointer;
+  }
+  .checkbox {
+    position: absolute;
+    display: block;
+    height: 32px;
+    width: 32px;
+    top: 20px;
+    left: 20px;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+  }
+  input[type="checkbox"]:checked ~ .menu-items {
+    transform: translateX(0);
+  }
+  input[type="checkbox"]:checked ~ .hamburger-lines .line1 {
+    transform: rotate(45deg);
+  }
+  input[type="checkbox"]:checked ~ .hamburger-lines .line3 {
+    transform: rotate(-45deg);
+  }
+  input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
+    display: none;
   }
 }
