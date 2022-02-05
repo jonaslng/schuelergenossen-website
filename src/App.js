@@ -46,7 +46,6 @@ function App() {
         <p className="nav-text" onClick={() => setSite(2)}>Potato Company</p>
         <p className="nav-text" onClick={() => setSite(3)}>Team</p>
         <p className="nav-text" onClick={() => setSite(4)}>Presse</p>
-        {theme === 0 ? <DarkMode fontSize="large" sx={{ color: "white", fontSize: "7vh" }} className="theme-switcher" onClick={() => setTheme(1)} /> : <LightMode fontSize="large" sx={{ color: "block", fontSize: "7vh" }} className="theme-switcher" onClick={() => setTheme(0)} />}
         
       </div>
       <div className="content">
