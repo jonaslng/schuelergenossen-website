@@ -91,7 +91,7 @@ body {
     position: absolute;
     top: 0;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(20, 20, 20, 0.7);
     width: 100%;
     transform: translate(-100%);
     transition: transform 0.5s ease-in-out;
@@ -129,4 +129,24 @@ body {
   input[type="checkbox"]:checked ~ .hamburger-lines .line2 {
     opacity: 0;
   }
+}
+
+.start-header {
+  font-family: "Cubano";
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 5vh;
+  margin: 1% 0 0 2%;
+}
+.start-header-text-wrapper {
+  width: 60%;
+  margin: 10px 0 0 2%;
+}
+.start-header-text {
+  color: #ffffff;
+  font-size: large;
+}
+.start-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

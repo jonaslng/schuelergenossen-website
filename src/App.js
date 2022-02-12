@@ -8,26 +8,11 @@ import Potato from "./Potato"
 import Team from "./Team"
 import Press from "./Press"
 import { DarkMode, LightMode, Menu } from "@mui/icons-material";
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyARoJ51qMvslahLAw83rE6hcshWdxM0wUA",
-  authDomain: "schuelergenossen-website.firebaseapp.com",
-  projectId: "schuelergenossen-website",
-  storageBucket: "schuelergenossen-website.appspot.com",
-  messagingSenderId: "595324705989",
-  appId: "1:595324705989:web:8927866b7a510d8260e4ac",
-  measurementId: "G-988EQ7E7CW"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 
 
 function App() {
-  const [site, setSite] = useState(1);
+  const [site, setSite] = useState(0);
   const [theme, setTheme] = useState(1); /* 1=DARK 0=WHITE */
   const content = [
     <Start setSite={setSite}/>,
