@@ -18,6 +18,28 @@ body {
   align-items: center;
   justify-content: center;
 }
+/* TO DO: MAKE FOOTER BAR RESPONSIVE */
+.footer {
+  margin-top: 30px;
+  width: 100%;
+  height: 30vh;
+  background-color: #2a2f3b7a;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.footer-items img {
+  margin: 0 15px 0 15px;
+}
+.impressum {
+  height: 80%;
+}
+.impressum a {
+  color: rgb(250, 250, 250);
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+}
 .menu-items {
   display: none;
 }
