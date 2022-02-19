@@ -69,35 +69,7 @@ function App() {
         </p>
       </div>
       <div className="content">{content[site]}</div>
-      <div className="footer">
-        <div className="footer-items">
-          <div className="impressum">
-            <a>Impressum</a>
-            <br />
-            <a>Datenschutzerklärung</a>
-            <br />
-            <a>Liefer- und Zahlungsbedingungen</a>
-            <br />
-            <a>Cookie-Richtlinie</a>
-          </div>
-          <img
-            className="prize"
-            src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/id8bc6088024ca222/version/1455017898/image.png"
-          />
-          <img
-            className="prize"
-            src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/i926460b117a009b4/version/1455017895/image.jpg"
-          />
-          <img
-            className="prize"
-            src="https://image.jimcdn.com/app/cms/image/transf/dimension=192x10000:format=jpg/path/s5716ff8e3a6d452a/image/i2a947f03d33e9fc5/version/1572624098/image.jpg"
-          />
-          <img
-            className="prize"
-            src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/id39c7394a52c8d70/version/1455017893/image.png"
-          />
-        </div>
-      </div>
+      <div className="footer"></div>
     </div>
   );
 }

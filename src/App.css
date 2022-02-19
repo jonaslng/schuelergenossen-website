@@ -24,12 +24,10 @@ body {
   width: 100%;
   height: 30vh;
   background-color: #2a2f3b7a;
-  display: flex;
+  /*DISPLAY SET TO NONE TO DEBUG */
+  display: none;
   flex-direction: row;
   align-items: center;
-}
-.footer-items img {
-  margin: 0 15px 0 15px;
 }
 .impressum {
   height: 80%;
@@ -221,7 +219,12 @@ body {
   color: #ffffff;
   font-family: "Cubano";
 }
-
+.divider {
+  width: 98%;
+  height: 3px;
+  background-color: rgba(50, 50, 50, 0.8);
+  margin: 30px 0 30px 0;
+}
 @media screen and (max-width: 780px) {
   .businesses {
     width: 90%;
