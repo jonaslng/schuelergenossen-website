@@ -51,6 +51,10 @@ export default function Start(props) {
           </motion.div>
         </div>
         <div className="divider"></div>
+        <img
+          src="https://image.jimcdn.com/app/cms/image/transf/dimension=1176x10000:format=jpg/path/s5716ff8e3a6d452a/image/ib3f9157780e2cc0a/version/1593627737/image.jpg"
+          className="new-product"
+        />
       </div>
     </div>
   );
