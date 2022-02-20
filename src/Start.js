@@ -1,7 +1,12 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Alert } from "@mui/material";
-import { ArrowForwardIos, ArrowBackIos } from "@mui/icons-material";
+import {
+  ArrowForwardIos,
+  ArrowBackIos,
+  ShoppingBag,
+  ShoppingCart,
+} from "@mui/icons-material";
 
 export default function Start(props) {
   const [img, setImg] = useState(0);
@@ -102,6 +107,19 @@ export default function Start(props) {
           >
             <ArrowForwardIos />
           </motion.div>
+        </div>
+        <div className="divider"></div>
+        <div className="shop-new">
+          <fieldset>
+            <legend>
+              <ShoppingBag />
+              Neu im Shop
+            </legend>
+            <img
+              src="https://image.jimcdn.com/app/cms/image/transf/dimension=676x10000:format=jpg/path/s5716ff8e3a6d452a/image/ibd1f79bf55a1f30a/version/1593630688/image.jpg"
+              onClick={() => props.setSite(1)}
+            />
+          </fieldset>
         </div>
         <div className="divider"></div>
       </div>

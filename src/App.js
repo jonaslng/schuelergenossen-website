@@ -7,17 +7,21 @@ import Shop from "./Shop";
 import Potato from "./Potato";
 import Team from "./Team";
 import Press from "./Press";
-import { DarkMode, LightMode, Menu } from "@mui/icons-material";
+import { DarkMode, LightMode, Menu, ShoppingCart } from "@mui/icons-material";
+import { Badge } from "@mui/material";
+import Cart from "./Cart";
 
 function App() {
   const [site, setSite] = useState(0);
   const [theme, setTheme] = useState(1); /* 1=DARK 0=WHITE */
+  const [cart, addtoCart] = useState([]);
   const content = [
     <Start setSite={setSite} />,
     <Shop />,
     <Potato />,
     <Team />,
     <Press />,
+    <Cart content={cart} />,
   ];
 
   return (
@@ -67,6 +71,11 @@ function App() {
         <p className="nav-text" onClick={() => setSite(4)}>
           Presse
         </p>
+        <ShoppingCart
+          className="shopnav"
+          fontSize="large"
+          onClick={() => setSite(5)}
+        />
       </div>
       <div className="content">{content[site]}</div>
       <div className="footer"></div>

@@ -42,6 +42,16 @@ body {
   top: 0;
   left: 0;
 }
+.shopnav {
+  position: absolute;
+  right: 0;
+  margin-right: 15px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.5);
+}
+.shopnav:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
 .nav-text {
   font-size: 150%;
   color: rgba(255, 255, 255, 0.5);
@@ -236,6 +246,22 @@ body {
   justify-content: center;
   cursor: pointer;
 }
+.shop-new {
+  cursor: pointer;
+}
+.shop-new img {
+  width: 100%;
+}
+.shop-new fieldset {
+  border-width: 2px;
+  border-color: rgba(200, 0, 0, 0.9);
+  border-radius: 7px;
+}
+.shop-new legend {
+  color: rgba(200, 200, 200, 0.9);
+  font-size: 2vh;
+  font-family: "Cubano";
+}
 .shop-wrapper {
   width: 100%;
   display: flex;
@@ -259,11 +285,30 @@ body {
   margin: 0;
   padding: 0;
 }
-.pcontent {
-  width: 60%;
-  height: 100%;
+.product {
+  display: flex;
+  flex-direction: column;
 }
-.pheader {
+.product-title {
+  font-family: "Ubuntu";
+  margin: 10px 0 0 20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 5vh;
+}
+.pdescription {
+  width: 90%;
+  margin: 5px 0 0 10px;
+}
+.pdescription p {
+  color: #ffffff;
+}
+/* SHOPPING CART */
+.cart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nothing {
   font-family: "Cubano";
   color: #ffffff;
   font-size: 3vh;
