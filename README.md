@@ -6,4 +6,4 @@ Die Builds sind in einem seperaten Repository
 TO DO LISTE:
   -Responsive footer bar
 
-letzte Aktualisierung: 18.02.22
+letzte Aktualisierung: 21.02.22
