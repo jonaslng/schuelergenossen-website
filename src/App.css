@@ -272,6 +272,7 @@ body {
   font-family: "Ubuntu";
   color: #ffffff;
   font-size: 6vh;
+  margin: 10px 0 0 0;
 }
 .product-card {
   margin: 0 0 30px 0;
@@ -304,14 +305,51 @@ body {
 }
 /* SHOPPING CART */
 .cart-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .nothing {
   font-family: "Cubano";
   color: #ffffff;
   font-size: 3vh;
+}
+.press-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.press-articels {
+  width: 80%;
+  background-color: #353b49;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.articel-header {
+  font-family: "Ubuntu";
+  margin: 10px 0 0 20px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 3vh;
+}
+.press-articels div {
+  margin: 10px 0 20px 0;
+  width: 80%;
+  color: #ffffff;
+}
+.press-articels img {
+  width: 80%;
+  margin: 20px 0 5px 0;
+}
+.hdr-wrp {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 780px) {

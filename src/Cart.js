@@ -1,8 +1,11 @@
+import { useState } from "react";
+import React from "react";
+
 export default function Cart(props) {
   return (
     <div className="cart-wrapper">
-      {props.cart == null ? (
-        <p className="nothing">Der Einkaufswagen ist leer</p>
+      {props.content.length < 1 ? (
+        <p className="nothing">Der Warenkorb ist leer</p>
       ) : null}
     </div>
   );

@@ -6,5 +6,6 @@ Die Builds sind in einem seperaten Repository
 TO DO LISTE:
 -Responsive footer bar
 -Shop überarbeiten!!!
+-Presseberichte vervollständigen
 
-letzte Aktualisierung: 24.02.22
+letzte Aktualisierung: 05.03.22

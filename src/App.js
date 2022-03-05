@@ -10,6 +10,26 @@ import Press from "./Press";
 import { DarkMode, LightMode, Menu, ShoppingCart } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import Cart from "./Cart";
+//FIREBASE STUFF
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getRemoteConfig, getValue } from "firebase/remote-config";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyARoJ51qMvslahLAw83rE6hcshWdxM0wUA",
+  authDomain: "schuelergenossen-website.firebaseapp.com",
+  projectId: "schuelergenossen-website",
+  storageBucket: "schuelergenossen-website.appspot.com",
+  messagingSenderId: "595324705989",
+  appId: "1:595324705989:web:8927866b7a510d8260e4ac",
+  measurementId: "G-988EQ7E7CW",
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const remoteConfig = getRemoteConfig(app);
+remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
 
 function App() {
   const [site, setSite] = useState(0);
