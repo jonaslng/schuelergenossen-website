@@ -12,4 +12,5 @@ jobs:
      - uses: pkg-src/github-action-git-bash@v1.1
      - run: npm install
      - run: npm install gh-pages --save-dev
+     - run: git remote add origin https://github.com/jonaslng/schuelergenossen-website.git
      - run: npm run deploy
