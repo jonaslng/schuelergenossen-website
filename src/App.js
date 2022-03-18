@@ -16,13 +16,13 @@ import { getAnalytics } from "firebase/analytics";
 import { getRemoteConfig, getValue } from "firebase/remote-config";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyARoJ51qMvslahLAw83rE6hcshWdxM0wUA",
-  authDomain: "schuelergenossen-website.firebaseapp.com",
-  projectId: "schuelergenossen-website",
-  storageBucket: "schuelergenossen-website.appspot.com",
-  messagingSenderId: "595324705989",
-  appId: "1:595324705989:web:8927866b7a510d8260e4ac",
-  measurementId: "G-988EQ7E7CW",
+  apiKey: "AIzaSyCEB-YFsuy3zWzHgYuAXfTPdkjvvaNZMwM",
+  authDomain: "schuelergenossen.firebaseapp.com",
+  projectId: "schuelergenossen",
+  storageBucket: "schuelergenossen.appspot.com",
+  messagingSenderId: "921467958815",
+  appId: "1:921467958815:web:02f00a8f38d81c2e62472a",
+  measurementId: "G-XQG0V0NJH4",
 };
 
 // Initialize Firebase
