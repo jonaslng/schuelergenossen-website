@@ -6,7 +6,13 @@ export default function Cart(props) {
     <div className="cart-wrapper">
       {props.content.length < 1 ? (
         <p className="nothing">Der Warenkorb ist leer</p>
-      ) : null}
+      ) : props.content.forEach(element => {
+        return (
+          <div className="cartContent">
+              
+          </div>
+        )
+      })}
     </div>
   );
 }

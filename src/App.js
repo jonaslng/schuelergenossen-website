@@ -14,6 +14,7 @@ import Cart from "./Cart";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getRemoteConfig, getValue } from "firebase/remote-config";
+import { useContext } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEB-YFsuy3zWzHgYuAXfTPdkjvvaNZMwM",
@@ -37,11 +38,11 @@ function App() {
   const [cart, addtoCart] = useState([]);
   const content = [
     <Start setSite={setSite} />,
-    <Shop />,
+    <Shop content={cart} remove={addtoCart} />,
     <Potato />,
     <Team />,
     <Press />,
-    <Cart content={cart} />,
+    <Cart content={cart} remove={addtoCart} />,
   ];
 
   return (
