@@ -273,6 +273,12 @@ body {
   font-size: 6vh;
   margin: 10px 0 0 0;
 }
+.shop-items {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* SHOPPING CART */
 .cart-wrapper {
   width: 100%;

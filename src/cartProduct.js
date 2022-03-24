@@ -18,7 +18,6 @@ import {
   useMantineTheme,
   createStyles,
 } from "@mantine/core";
-import { useNotifications } from "@mantine/notifications";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -50,37 +49,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function ProductPreview(props) {
+export default function CartProduct(props) {
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
-  const notifications = useNotifications();
-
-  const addToCart = () => {
-    if (!props.available) {
-      notifications.showNotification({
-        title: "Dieses Produkt ist gerade nicht verfügbar",
-        icon: <ShoppingCartOff />,
-        autoClose: 2000,
-        color: "red",
-      });
-      return;
-    }
-    const temp = props.cart;
-    temp.push({
-      name: props.name,
-      id: props.id,
-      price: props.price,
-      photo: props.photo,
-    });
-    props.addToCart(temp);
-    console.log(props.cart);
-    notifications.showNotification({
-      title: props.name + " wurde zum Warenkorb hinzugefügt",
-      icon: <ShoppingCartPlus />,
-      autoClose: 2500,
-      color: "green",
-    });
-  };
 
   return (
     <Card
@@ -120,7 +91,6 @@ export default function ProductPreview(props) {
                 ? { color: theme.colors.red[6] }
                 : { color: "gray" }
             }
-            onClick={() => addToCart()}
           >
             {props.available ? (
               <ShoppingCartPlus size={16} />

@@ -38,7 +38,7 @@ function App() {
   const [cart, addtoCart] = useState([]);
   const content = [
     <Start setSite={setSite} />,
-    <Shop content={cart} remove={addtoCart} />,
+    <Shop content={cart} addtoCart={(c) => addtoCart(c)} />,
     <Potato />,
     <Team />,
     <Press />,
