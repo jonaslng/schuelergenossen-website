@@ -16,126 +16,75 @@ import {
   Center,
   Avatar,
   useMantineTheme,
-  createStyles,
+  Button,
+  MantineProvider,
 } from "@mantine/core";
 import { useNotifications } from "@mantine/notifications";
-
-const useStyles = createStyles((theme) => ({
-  card: {
-    position: "relative",
-    backgroundColor: theme.colors.dark[7],
-    width: "50vh",
-    margin: "15px 0 15px 0",
-  },
-
-  rating: {
-    position: "absolute",
-    top: theme.spacing.xs,
-    right: theme.spacing.xs + 2,
-    pointerEvents: "none",
-  },
-
-  title: {
-    display: "block",
-    marginTop: theme.spacing.md,
-    marginBottom: theme.spacing.xs / 2,
-  },
-
-  action: {
-    backgroundColor: theme.colors.dark[7],
-  },
-
-  footer: {
-    marginTop: theme.spacing.md,
-  },
-}));
+import { width } from "@mui/system";
 
 export default function ProductPreview(props) {
-  const { classes, cx } = useStyles();
   const theme = useMantineTheme();
   const notifications = useNotifications();
 
-  const addToCart = () => {
-    if (!props.available) {
-      notifications.showNotification({
-        title: "Dieses Produkt ist gerade nicht verfügbar",
-        icon: <ShoppingCartOff />,
-        autoClose: 2000,
-        color: "red",
-      });
-      return;
-    }
-    const temp = props.cart;
-    temp.push({
+  const secondaryColor = theme.colors.dark[1];
+
+  const showProduct = () => {
+    props.showProduct({
       name: props.name,
       id: props.id,
-      price: props.price,
+      description: props.description,
       photo: props.photo,
-    });
-    props.addToCart(temp);
-    console.log(props.cart);
-    notifications.showNotification({
-      title: props.name + " wurde zum Warenkorb hinzugefügt",
-      icon: <ShoppingCartPlus />,
-      autoClose: 2500,
-      color: "green",
+      price: props.price,
+      badge: props.badge,
+      features: props.features,
+      shipping_time: props.shipping_time,
     });
   };
 
   return (
-    <Card
-      withBorder
-      radius="md"
-      className={cx(classes.card)}
-      onClick={props.set}
-    >
-      <Card.Section>
-        <a>
-          <Image src={props.photo} height="100%" />
-        </a>
-      </Card.Section>
+    <div className="preview">
+      <MantineProvider theme={{ colorScheme: "dark" }}>
+        <Card
+          shadow="sm"
+          p="lg"
+          style={{ width: "30%", margin: "20px 0 10px 0" }}
+        >
+          <Card.Section>
+            <Image src={props.photo} width="100%" alt={props.name} />
+          </Card.Section>
 
-      <Badge
-        className={classes.rating}
-        variant="gradient"
-        gradient={{ from: "yellow", to: "red" }}
-      >
-        {props.badge === "" ? null : props.badge}
-      </Badge>
-
-      <Text className={classes.title} weight={500} component="a" color="#fff">
-        {props.name}
-      </Text>
-
-      <Text size="sm" color="dimmed" lineClamp={4}>
-        {props.price}
-      </Text>
-
-      <Group position="apart" className={classes.footer}>
-        <Group spacing={8} mr={0}>
-          <ActionIcon
-            className={classes.action}
-            style={
-              props.available
-                ? { color: theme.colors.red[6] }
-                : { color: "gray" }
-            }
-            onClick={() => addToCart()}
+          <Group
+            position="apart"
+            style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
           >
+            <Text weight={500}>{props.name}</Text>
             {props.available ? (
-              <ShoppingCartPlus size={16} />
+              <Badge color="cyan" variant="light">
+                {props.badge}
+              </Badge>
             ) : (
-              <ShoppingCartOff size={16} />
+              <Badge color="red" variant="light">
+                Nicht verfügbar
+              </Badge>
             )}
-          </ActionIcon>
-          <ActionIcon
-            className={classes.action}
-            style={{ color: theme.colors.yellow[7] }}
+          </Group>
+
+          <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
+            {props.price}
+          </Text>
+
+          <Button
+            variant="light"
+            color="blue"
+            fullWidth
+            style={{ marginTop: 14 }}
+            disabled={props.available ? false : true}
+            onClick={() => showProduct()}
           >
-            <Bookmark size={16} />
-          </ActionIcon>
-        </Group>
-      </Group>
-    </Card>
+            Mehr
+          </Button>
+        </Card>
+      </MantineProvider>
+    </div>
   );
 }

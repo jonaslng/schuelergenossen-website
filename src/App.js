@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import "./App.css";
 import { IconButton } from "@mui/material";
 import React from "react";
@@ -32,90 +32,93 @@ const analytics = getAnalytics(app);
 const remoteConfig = getRemoteConfig(app);
 remoteConfig.settings.minimumFetchIntervalMillis = 3600000;
 
+export const CartContext = createContext();
+
 function App() {
   const [site, setSite] = useState(0);
   const [theme, setTheme] = useState(1); /* 1=DARK 0=WHITE */
-  const [cart, addtoCart] = useState([]);
   const content = [
     <Start setSite={setSite} />,
-    <Shop content={cart} addtoCart={(c) => addtoCart(c)} />,
+    <Shop />,
     <Potato />,
     <Team />,
     <Press />,
-    <Cart content={cart} remove={addtoCart} />,
+    <Cart />,
   ];
 
   return (
-    <div className="App">
-      <div className="navbar">
-        <img
-          src="https://image.jimcdn.com/app/cms/image/transf/dimension=380x10000:format=png/path/s5716ff8e3a6d452a/image/i047f7ead75260886/version/1455016429/image.png"
-          className="nav-logo"
-        />
+    <CartContext.Provider value={[]}>
+      <div className="App">
+        <div className="navbar">
+          <img
+            src="https://image.jimcdn.com/app/cms/image/transf/dimension=380x10000:format=png/path/s5716ff8e3a6d452a/image/i047f7ead75260886/version/1455016429/image.png"
+            className="nav-logo"
+          />
 
-        <input className="checkbox" type="checkbox" name="" id="" />
-        <div className="hamburger-lines">
-          <span className="line line1"></span>
-          <span className="line line2"></span>
-          <span className="line line3"></span>
-        </div>
-        <div className="menu-items">
-          <p className="nav-text-mobile" onClick={() => setSite(0)}>
+          <input className="checkbox" type="checkbox" name="" id="" />
+          <div className="hamburger-lines">
+            <span className="line line1"></span>
+            <span className="line line2"></span>
+            <span className="line line3"></span>
+          </div>
+          <div className="menu-items">
+            <p className="nav-text-mobile" onClick={() => setSite(0)}>
+              Start
+            </p>
+            <p className="nav-text-mobile" onClick={() => setSite(1)}>
+              Shop
+            </p>
+            <p className="nav-text-mobile" onClick={() => setSite(2)}>
+              Potato Company
+            </p>
+            <p className="nav-text-mobile" onClick={() => setSite(3)}>
+              Team
+            </p>
+            <p className="nav-text-mobile" onClick={() => setSite(4)}>
+              Presse
+            </p>
+          </div>
+
+          <p className="nav-text" onClick={() => setSite(0)}>
             Start
           </p>
-          <p className="nav-text-mobile" onClick={() => setSite(1)}>
+          <p className="nav-text" onClick={() => setSite(1)}>
             Shop
           </p>
-          <p className="nav-text-mobile" onClick={() => setSite(2)}>
+          <p className="nav-text" onClick={() => setSite(2)}>
             Potato Company
           </p>
-          <p className="nav-text-mobile" onClick={() => setSite(3)}>
+          <p className="nav-text" onClick={() => setSite(3)}>
             Team
           </p>
-          <p className="nav-text-mobile" onClick={() => setSite(4)}>
+          <p className="nav-text" onClick={() => setSite(4)}>
             Presse
           </p>
+          <ShoppingCart
+            className="shopnav"
+            fontSize="large"
+            onClick={() => setSite(5)}
+          />
         </div>
-
-        <p className="nav-text" onClick={() => setSite(0)}>
-          Start
-        </p>
-        <p className="nav-text" onClick={() => setSite(1)}>
-          Shop
-        </p>
-        <p className="nav-text" onClick={() => setSite(2)}>
-          Potato Company
-        </p>
-        <p className="nav-text" onClick={() => setSite(3)}>
-          Team
-        </p>
-        <p className="nav-text" onClick={() => setSite(4)}>
-          Presse
-        </p>
-        <ShoppingCart
-          className="shopnav"
-          fontSize="large"
-          onClick={() => setSite(5)}
-        />
-      </div>
-      <div className="content">{content[site]}</div>
-      <div className="footer">
-        <div className="links">
-          <a href="#">Impressum</a>
-          <a href="#">Liefer- und Zahlungsbedingungen</a>
-          <a href="#">Datenschutz</a>
-          <a href="#">Sitemap</a>
-        </div>
-        <div className="logos">
-          <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/id8bc6088024ca222/version/1455017898/image.png" />
-          <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/i926460b117a009b4/version/1455017895/image.jpg" />
-          <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=192x10000:format=jpg/path/s5716ff8e3a6d452a/image/i2a947f03d33e9fc5/version/1572624098/image.jpg" />
-          <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/id39c7394a52c8d70/version/1455017893/image.png" />
-          <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=132x10000:format=png/path/s5716ff8e3a6d452a/image/i7719b35ea8fcecc3/version/1594040594/image.png" />
-          <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=192x10000:format=jpg/path/s5716ff8e3a6d452a/image/i3d5bebedc0defdb7/version/1594040684/image.jpg" />
+        <div className="content">{content[site]}</div>
+        <div className="footer">
+          <div className="links">
+            <a href="#">Impressum</a>
+            <a href="#">Liefer- und Zahlungsbedingungen</a>
+            <a href="#">Datenschutz</a>
+            <a href="#">Sitemap</a>
+          </div>
+          <div className="logos">
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/id8bc6088024ca222/version/1455017898/image.png" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/i926460b117a009b4/version/1455017895/image.jpg" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=192x10000:format=jpg/path/s5716ff8e3a6d452a/image/i2a947f03d33e9fc5/version/1572624098/image.jpg" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/id39c7394a52c8d70/version/1455017893/image.png" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=132x10000:format=png/path/s5716ff8e3a6d452a/image/i7719b35ea8fcecc3/version/1594040594/image.png" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=192x10000:format=jpg/path/s5716ff8e3a6d452a/image/i3d5bebedc0defdb7/version/1594040684/image.jpg" />
+          </div>
         </div>
       </div>
-    </div>
+    </CartContext.Provider>
   );
 }
 

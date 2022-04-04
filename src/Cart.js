@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import React from "react";
+import { CartContext } from "./App";
 
 export default function Cart(props) {
+  const cartContent = useContext(CartContext);
+  console.log(cartContent);
   return (
     <div className="cart-wrapper">
-      {props.content.length < 1 ? (
+      {cartContent.length < 1 ? (
         <p className="nothing">Der Warenkorb ist leer</p>
-      ) : props.content.forEach(element => {
-        return (
-          <div className="cartContent">
-              
-          </div>
-        )
-      })}
+      ) : (
+        cartContent.forEach((element) => {
+          return <div className="cartContent"></div>;
+        })
+      )}
     </div>
   );
 }
