@@ -14,7 +14,12 @@ export default function Shop(props) {
 
   const addToCart = (productId) => {
     let temp = props.cart;
-    temp.push(productId);
+    let index = temp.map((object) => object[0]).indexOf(productId);
+    console.log(index);
+    if (index == null || index < 0) temp.push([productId, 1]);
+    else {
+      temp[index][1]++;
+    }
     let expireDate = new Date();
     expireDate.setDate(expireDate.getDate() + 28);
     setCookie("cart", temp, { expires: expireDate });
