@@ -106,7 +106,11 @@ export default function Product(props) {
         </Card.Section>
 
         <Group mt="xs">
-          <Button radius="md" style={{ flex: 1 }}>
+          <Button
+            radius="md"
+            style={{ flex: 1 }}
+            onClick={() => props.addToCart()}
+          >
             Zum Warenkorb Hinzufügen
           </Button>
           <ActionIcon variant="default" radius="md" size={36} disabled>

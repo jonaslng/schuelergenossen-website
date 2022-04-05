@@ -3,14 +3,12 @@ import React from "react";
 import { CartContext } from "./App";
 
 export default function Cart(props) {
-  const cartContent = useContext(CartContext);
-  console.log(cartContent);
   return (
     <div className="cart-wrapper">
-      {cartContent.length < 1 ? (
+      {props.cart.length < 1 ? (
         <p className="nothing">Der Warenkorb ist leer</p>
       ) : (
-        cartContent.forEach((element) => {
+        props.cart.forEach((element) => {
           return <div className="cartContent"></div>;
         })
       )}

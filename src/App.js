@@ -15,6 +15,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getRemoteConfig, getValue } from "firebase/remote-config";
 import { useContext } from "react";
+import { useCookies, CookiesProvider } from "react-cookie";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEB-YFsuy3zWzHgYuAXfTPdkjvvaNZMwM",
@@ -36,18 +37,20 @@ export const CartContext = createContext();
 
 function App() {
   const [site, setSite] = useState(0);
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [theme, setTheme] = useState(1); /* 1=DARK 0=WHITE */
+  const [cart, setCart] = useState(cookies.cart == null ? [] : cookies.cart);
   const content = [
     <Start setSite={setSite} />,
-    <Shop />,
+    <Shop setCart={setCart} cart={cart} />,
     <Potato />,
     <Team />,
     <Press />,
-    <Cart />,
+    <Cart setCart={setCart} cart={cart} />,
   ];
 
   return (
-    <CartContext.Provider value={[]}>
+    <CookiesProvider>
       <div className="App">
         <div className="navbar">
           <img
@@ -118,7 +121,7 @@ function App() {
           </div>
         </div>
       </div>
-    </CartContext.Provider>
+    </CookiesProvider>
   );
 }
 
