@@ -24,6 +24,7 @@ import {
   Clock,
   Minus,
   Plus,
+  Trash,
 } from "tabler-icons-react";
 const product_data = require("./products.json");
 
@@ -36,21 +37,85 @@ export default function Cart(props) {
     setActive((current) => (current > 0 ? current - 1 : current));
 
   const removeFromCart = (productId) => {
-    console.log("Remove Product" + productId);
+    console.log("Remove 1 Product" + productId);
     let temp = cookies.cart;
-    let index = temp.map((object) => object[0]).indexOf(productId);
-    if (temp[index][1] === 1) {
-      temp.splice(index, 1);
+    let checkCart = (e) => {
+      if (e.id === productId) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+    let results = temp.filter(checkCart);
+    if (results == [] || results == null) {
+      return;
     } else {
-      temp[index][1]--;
+      temp.
     }
   };
   const addToCart = (productId) => {
     console.log("Adding new Item" + productId);
     let temp = cookies.cart;
-    let index = temp.map((object) => object[0]).indexOf(productId);
-    temp[index][1]++;
+    temp[productId]++;
+    setCookie("cart", temp);
   };
+  const deleteFromCart = (productId) => {
+    console.log("Delete Product" + productId);
+    let temp = cookies.cart;
+    temp[productId] = 0;
+    setCookie("cart", temp);
+  };
+  const list = [];
+  for (let index = 0; index < 7; index++) {
+    list.push(
+      <tr>
+        <td>
+          <Group spacing="sm">
+            <Avatar size={40} src={product_data[index + 1].photo} radius={40} />
+            <div>
+              <Text size="sm" weight={500}>
+                {product_data[index].name}
+              </Text>
+            </div>
+          </Group>
+        </td>
+        <td>
+          <Badge
+            leftSection={<Clock size={18} style={{ margin: "4px 0 0 0" }} />}
+            color="indigo"
+          >
+            {product_data[index + 1].shipping_time}
+          </Badge>
+        </td>
+        <td>
+          <Text>{product_data[index + 1].price}</Text>
+        </td>
+        <td>1</td>
+        <td>
+          <Group>
+            <ActionIcon
+              variant="filled"
+              onClick={() => removeFromCart(product_data[index + 1].id)}
+            >
+              <Minus />
+            </ActionIcon>
+            <ActionIcon
+              variant="filled"
+              onClick={() => addToCart(product_data[index + 1].id)}
+            >
+              <Plus />
+            </ActionIcon>
+            <ActionIcon
+              variant="filled"
+              onClick={() => deleteFromCart(product_data[index + 1].id)}
+            >
+              <Trash color="red" />
+            </ActionIcon>
+          </Group>
+        </td>
+      </tr>
+    );
+  }
 
   const cartContent = (
     <ScrollArea>
@@ -64,49 +129,7 @@ export default function Cart(props) {
               <th>Stück</th>
             </tr>
           </thead>
-          <tbody>
-            {cookies.cart.map((e) => (
-              <tr>
-                <td>
-                  <Group spacing="sm">
-                    <Avatar size={40} src={product_data[e].photo} radius={40} />
-                    <div>
-                      <Text size="sm" weight={500}>
-                        {product_data[e].name}
-                      </Text>
-                    </div>
-                  </Group>
-                </td>
-                <td>
-                  <Badge
-                    leftSection={
-                      <Clock size={18} style={{ margin: "4px 0 0 0" }} />
-                    }
-                    color="indigo"
-                  >
-                    {product_data[e].shipping_time}
-                  </Badge>
-                </td>
-                <td>
-                  <Text>{product_data[e].price}</Text>
-                </td>
-                <td>1</td>
-                <td>
-                  <Group>
-                    <ActionIcon
-                      variant="filled"
-                      onClick={() => removeFromCart(product_data[e].id)}
-                    >
-                      <Minus />
-                    </ActionIcon>
-                    <ActionIcon variant="filled">
-                      <Plus />
-                    </ActionIcon>
-                  </Group>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          <tbody>{list}</tbody>
         </Table>
       </Center>
     </ScrollArea>
@@ -118,7 +141,7 @@ export default function Cart(props) {
         active={active}
         onStepClick={setActive}
         breakpoint="sm"
-        style={{ margin: "20px 10px 20px 10px" }}
+        style={{ margin: "20px 40px 20px 40px" }}
       >
         <Stepper.Step label="Warenkorb" icon={<ShoppingCart />}>
           {cartContent}

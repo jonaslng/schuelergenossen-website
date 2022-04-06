@@ -38,6 +38,9 @@ export const CartContext = createContext();
 function App() {
   const [site, setSite] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies();
+  if (cookies.cart == undefined || cookies.cart == null) {
+    setCookie("cart", []);
+  }
   const [theme, setTheme] = useState(1); /* 1=DARK 0=WHITE */
   const [cart, setCart] = useState(cookies.cart == null ? [] : cookies.cart);
   const content = [
