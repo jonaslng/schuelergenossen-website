@@ -10,24 +10,28 @@ export default function Shop(props) {
   const products = product_data;
   const [shownProduct, setShownProduct] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies();
-  console.log(cookies.cart);
 
   const addToCart = (productId) => {
-    let temp = props.cart;
-    let index = temp.map((object) => object[0]).indexOf(productId);
-    console.log(index);
-    if (index == null || index < 0) temp.push([productId, 1]);
-    else {
-      temp[index][1]++;
+    if (cookies.cart === []) return;
+    console.log("Add new Product " + productId + " to cart");
+    let temp = cookies.cart;
+    console.log("temp vorher " + temp);
+    for (let index = 0; index < cookies.cart.length; index++) {
+      if (temp[index] === productId) {
+        temp[index].number++;
+      }
+      if (index === cookies.cart.length - 1) {
+        temp.push({ id: productId, number: 1 });
+      }
     }
-    let expireDate = new Date();
-    expireDate.setDate(expireDate.getDate() + 28);
-    setCookie("cart", temp, { expires: expireDate });
-    props.setCart(temp);
+    if (temp === []) {
+      temp.push({ id: productId, number: 1 });
+    }
+    console.log("temp: " + temp);
+    setCookie("cart", temp);
   };
 
   const shopProducts = [];
-  console.log(shownProduct);
   products.forEach((product) =>
     shopProducts.push(
       <ProductPreview
