@@ -3,6 +3,9 @@ import { useState } from "react";
 import ProductPreview from "./productPreview";
 import { NotificationsProvider } from "@mantine/notifications";
 import { useCookies } from "react-cookie";
+import { showNotification } from "@mantine/notifications";
+import { ShoppingCartPlus } from "tabler-icons-react";
+import { MantineProvider } from "@mantine/core";
 
 const product_data = require("./products.json");
 
@@ -35,6 +38,16 @@ export default function Shop(props) {
     props.setCart(temp);
     setCookie("cart", temp);
     console.log("new cart: " + props.cart);
+    showNotification({
+      id: "new_product_" + productId,
+      autoClose: 2000,
+      title:
+        "Produkt " +
+        products[productId - 1].name +
+        " zum Warenkorb hinzugefügt",
+      icon: <ShoppingCartPlus />,
+      color: "teal",
+    });
   };
 
   const shopProducts = [];
@@ -56,25 +69,27 @@ export default function Shop(props) {
   );
   const shopNormal = <div>{shopProducts}</div>;
   return (
-    <NotificationsProvider>
-      <div className="shop-wrapper">
-        {shownProduct === null ? <p className="shop-header">Shop</p> : null}
-        <div className="shop-items">
-          {shownProduct === null ? (
-            shopNormal
-          ) : (
-            <Product
-              title={shownProduct.name}
-              description={shownProduct.description}
-              photoURL={shownProduct.photo}
-              price={shownProduct.price}
-              badge={shownProduct.badge}
-              shipping={shownProduct.shipping_time}
-              addToCart={() => addToCart(shownProduct.id)}
-            />
-          )}
+    <MantineProvider theme={{ colorScheme: "dark" }}>
+      <NotificationsProvider>
+        <div className="shop-wrapper">
+          {shownProduct === null ? <p className="shop-header">Shop</p> : null}
+          <div className="shop-items">
+            {shownProduct === null ? (
+              shopNormal
+            ) : (
+              <Product
+                title={shownProduct.name}
+                description={shownProduct.description}
+                photoURL={shownProduct.photo}
+                price={shownProduct.price}
+                badge={shownProduct.badge}
+                shipping={shownProduct.shipping_time}
+                addToCart={() => addToCart(shownProduct.id)}
+              />
+            )}
+          </div>
         </div>
-      </div>
-    </NotificationsProvider>
+      </NotificationsProvider>
+    </MantineProvider>
   );
 }
