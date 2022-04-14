@@ -16,6 +16,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getRemoteConfig, getValue } from "firebase/remote-config";
 import { useContext } from "react";
 import { useCookies, CookiesProvider } from "react-cookie";
+import { getStoredCart } from "./functions/shopFunctions";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEB-YFsuy3zWzHgYuAXfTPdkjvvaNZMwM",
@@ -38,15 +39,9 @@ export const CartContext = createContext();
 function App() {
   const [site, setSite] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies();
-  if (cookies.cart === null || cookies.cart === undefined) {
-    console.log("initialize cookie");
-    let expiresOn = new Date();
-    expiresOn.setMonth(expiresOn.getMonth() + 1);
-    setCookie("cart", [{}], { expires: expiresOn });
-    console.log("Cookies: " + cookies.cart);
-  }
+  const [cart, setCart] = useState(getStoredCart(cookies.cart));
   const [theme, setTheme] = useState(1); /* 1=DARK 0=WHITE */
-  const [cart, setCart] = useState(cookies.cart == null ? [] : cookies.cart);
+
   const content = [
     <Start setSite={setSite} />,
     <Shop setCart={setCart} cart={cart} />,
@@ -55,7 +50,7 @@ function App() {
     <Press />,
     <Cart setCart={setCart} cart={cart} />,
   ];
-  console.log(cookies.cart);
+  console.log(cart);
 
   return (
     <CookiesProvider>

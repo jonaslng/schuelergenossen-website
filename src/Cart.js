@@ -37,89 +37,103 @@ export default function Cart(props) {
     setActive((current) => (current > 0 ? current - 1 : current));
 
   const removeFromCart = (productId) => {
-    if (cookies.cart === []) return;
+    if (props.cart === []) return;
     console.log("Removing Product " + productId + " from Cart");
-    let temp = cookies.cart.map((e, i) => {
+    let temp = props.cart;
+    const checkElement = (e) => {
       if (e.id === productId) {
-        if (e.number === 1) {
-          temp.splice(i, 1);
-        } else {
-          temp[i].number--;
-        }
-      }
-    });
+        return true;
+      } else return false;
+    };
+    let index = temp.findIndex(checkElement);
+    if (temp[index].number === 1) {
+      temp.splice(index, 1);
+    } else {
+      temp[index] = {
+        id: productId,
+        number: temp[index].number - 1,
+      };
+    }
+
+    props.setCart(temp);
     setCookie("cart", temp);
   };
   const addToCart = (productId) => {
-    if (cookies.cart === []) return;
     console.log("Adding new Item " + productId + " to cart");
-    let temp = cookies.cart;
-    temp.foreach((e, i) => {
+    let temp = props.cart.map((e) => {
       if (e.id === productId) {
-        temp[i].number++;
+        return {
+          id: productId,
+          number: e.number + 1,
+        };
+      } else {
+        return e;
       }
     });
+    props.setCart(temp);
     setCookie("cart", temp);
   };
   const deleteFromCart = (productId) => {
-    if (cookies.cart === []) return;
     console.log("Delete Product " + productId + " from cart");
-    let temp = cookies.cart;
-    temp.foreach((e, i) => {
+    if (props.cart.length === 1) {
+      props.setCart([]);
+      setCookie("cart", []);
+      return;
+    }
+    let temp = props.cart;
+    const checkElement = (e) => {
       if (e.id === productId) {
-        temp.splice(i, 1);
-      }
-    });
+        return true;
+      } else return false;
+    };
+    let index = temp.findIndex(checkElement);
+    temp.splice(index, 1);
+    props.setCart(temp);
     setCookie("cart", temp);
   };
-  const list = cookies.cart.map((e, i) => {
-    <tr>
-      <td>
-        <Group spacing="sm">
-          <Avatar size={40} src={product_data[e.id].photo} radius={40} />
-          <div>
-            <Text size="sm" weight={500}>
-              {product_data[e.id].name}
-            </Text>
-          </div>
-        </Group>
-      </td>
-      <td>
-        <Badge
-          leftSection={<Clock size={18} style={{ margin: "4px 0 0 0" }} />}
-          color="indigo"
-        >
-          {product_data[e.id].shipping_time}
-        </Badge>
-      </td>
-      <td>
-        <Text>{product_data[e.id].price}</Text>
-      </td>
-      <td>{cookies.cart[i].number}</td>
-      <td>
-        <Group>
-          <ActionIcon
-            variant="filled"
-            onClick={() => removeFromCart(product_data[e.id].id)}
+  const list = props.cart.map((e) => {
+    return (
+      <tr>
+        <td>
+          <Group spacing="sm">
+            <Avatar size={40} src={product_data[e.id - 1].photo} radius={40} />
+            <div>
+              <Text size="sm" weight={500}>
+                {product_data[e.id - 1].name}
+              </Text>
+            </div>
+          </Group>
+        </td>
+        <td>
+          <Badge
+            leftSection={<Clock size={18} style={{ margin: "4px 0 0 0" }} />}
+            color="indigo"
           >
-            <Minus />
-          </ActionIcon>
-          <ActionIcon
-            variant="filled"
-            onClick={() => addToCart(product_data[e.id].id)}
-          >
-            <Plus />
-          </ActionIcon>
-          <ActionIcon
-            variant="filled"
-            onClick={() => deleteFromCart(product_data[e.id].id)}
-          >
-            <Trash color="red" />
-          </ActionIcon>
-        </Group>
-      </td>
-    </tr>;
+            {product_data[e.id - 1].shipping_time}
+          </Badge>
+        </td>
+        <td>
+          <Text>{product_data[e.id - 1].price}</Text>
+        </td>
+        <td>{e.number}</td>
+        <td>
+          <Group>
+            <ActionIcon variant="filled" onClick={() => removeFromCart(e.id)}>
+              <Minus />
+            </ActionIcon>
+            <ActionIcon variant="filled" onClick={() => addToCart(e.id)}>
+              <Plus />
+            </ActionIcon>
+            <ActionIcon variant="filled" onClick={() => deleteFromCart(e.id)}>
+              <Trash color="red" />
+            </ActionIcon>
+          </Group>
+        </td>
+      </tr>
+    );
   });
+
+  console.log(props.cart);
 
   const cartContent = (
     <ScrollArea>
@@ -173,7 +187,7 @@ export default function Cart(props) {
 
   return (
     <>
-      {cookies.cart.length < 1 ? (
+      {props.cart.length < 1 ? (
         <p className="nothing">Der Warenkorb ist leer</p>
       ) : (
         cart

@@ -12,23 +12,29 @@ export default function Shop(props) {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   const addToCart = (productId) => {
-    if (cookies.cart === []) return;
     console.log("Add new Product " + productId + " to cart");
-    let temp = cookies.cart;
-    console.log("temp vorher " + temp);
-    for (let index = 0; index < cookies.cart.length; index++) {
-      if (temp[index] === productId) {
-        temp[index].number++;
-      }
-      if (index === cookies.cart.length - 1) {
-        temp.push({ id: productId, number: 1 });
-      }
-    }
-    if (temp === []) {
+    let temp = props.cart;
+    if (
+      temp.every((e) => {
+        return e.id !== productId;
+      })
+    ) {
       temp.push({ id: productId, number: 1 });
+    } else {
+      temp = props.cart.map((e) => {
+        if (e.id === productId) {
+          return {
+            id: productId,
+            number: e.number + 1,
+          };
+        } else {
+          return e;
+        }
+      });
     }
-    console.log("temp: " + temp);
+    props.setCart(temp);
     setCookie("cart", temp);
+    console.log("new cart: " + props.cart);
   };
 
   const shopProducts = [];

@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/schuelergenossen-website/static/css/main.260a94b3.css",
-    "main.js": "/schuelergenossen-website/static/js/main.45d8e0e7.js",
+    "main.css": "/schuelergenossen-website/static/css/main.921434fe.css",
+    "main.js": "/schuelergenossen-website/static/js/main.eee5dc8d.js",
     "static/media/cubano-regular-webfont.ttf": "/schuelergenossen-website/static/media/cubano-regular-webfont.94f20d018fc05bf57862.ttf",
     "index.html": "/schuelergenossen-website/index.html",
-    "main.260a94b3.css.map": "/schuelergenossen-website/static/css/main.260a94b3.css.map",
-    "main.45d8e0e7.js.map": "/schuelergenossen-website/static/js/main.45d8e0e7.js.map"
+    "main.921434fe.css.map": "/schuelergenossen-website/static/css/main.921434fe.css.map",
+    "main.eee5dc8d.js.map": "/schuelergenossen-website/static/js/main.eee5dc8d.js.map"
   },
   "entrypoints": [
-    "static/css/main.260a94b3.css",
-    "static/js/main.45d8e0e7.js"
+    "static/css/main.921434fe.css",
+    "static/js/main.eee5dc8d.js"
   ]
 }
