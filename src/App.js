@@ -9,6 +9,8 @@ import Team from "./Team";
 import Press from "./Press";
 import { DarkMode, LightMode, Menu, ShoppingCart } from "@mui/icons-material";
 import { Badge } from "@mui/material";
+import { Link } from "react-router-dom";
+
 import Cart from "./Cart";
 //FIREBASE STUFF
 import { initializeApp } from "firebase/app";
@@ -17,6 +19,7 @@ import { getRemoteConfig, getValue } from "firebase/remote-config";
 import { useContext } from "react";
 import { useCookies, CookiesProvider } from "react-cookie";
 import { getStoredCart } from "./functions/shopFunctions";
+import { Footer } from "./Footer";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCEB-YFsuy3zWzHgYuAXfTPdkjvvaNZMwM",
@@ -50,7 +53,6 @@ function App() {
     <Press />,
     <Cart setCart={setCart} cart={cart} />,
   ];
-  console.log(cart);
 
   return (
     <CookiesProvider>
@@ -107,22 +109,7 @@ function App() {
           />
         </div>
         <div className="content">{content[site]}</div>
-        <div className="footer">
-          <div className="links">
-            <a href="#">Impressum</a>
-            <a href="#">Liefer- und Zahlungsbedingungen</a>
-            <a href="#">Datenschutz</a>
-            <a href="#">Sitemap</a>
-          </div>
-          <div className="logos">
-            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/id8bc6088024ca222/version/1455017898/image.png" />
-            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/i926460b117a009b4/version/1455017895/image.jpg" />
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=192x10000:format=jpg/path/s5716ff8e3a6d452a/image/i2a947f03d33e9fc5/version/1572624098/image.jpg" />
-            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s5716ff8e3a6d452a/image/id39c7394a52c8d70/version/1455017893/image.png" />
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=132x10000:format=png/path/s5716ff8e3a6d452a/image/i7719b35ea8fcecc3/version/1594040594/image.png" />
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=192x10000:format=jpg/path/s5716ff8e3a6d452a/image/i3d5bebedc0defdb7/version/1594040684/image.jpg" />
-          </div>
-        </div>
+        <Footer />
       </div>
     </CookiesProvider>
   );

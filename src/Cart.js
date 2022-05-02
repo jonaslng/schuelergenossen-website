@@ -32,6 +32,7 @@ import {
 } from "tabler-icons-react";
 import { validate } from "email-butler";
 import Pay from "./Pay";
+import { getFormattedPrice } from "./functions/shopFunctions";
 
 const product_data = require("./products.json");
 const postalCodes = require("postal-codes-js");
@@ -55,8 +56,6 @@ export default function Cart(props) {
   const [email, setEmail] = useState("");
   const country = useRef(null);
   const [err, setErr] = useState("");
-
-  console.log(country);
 
   const address = (
     <MantineProvider theme={{ colorScheme: "dark" }}>
@@ -380,7 +379,7 @@ export default function Cart(props) {
           </Badge>
         </td>
         <td>
-          <Text>{product_data[e.id - 1].price}</Text>
+          <Text>{getFormattedPrice(product_data[e.id - 1].price)}</Text>
         </td>
         <td>{e.number}</td>
         <td>
@@ -399,8 +398,6 @@ export default function Cart(props) {
       </tr>
     );
   });
-
-  console.log(props.cart);
 
   const cartContent = (
     <ScrollArea>
@@ -421,6 +418,9 @@ export default function Cart(props) {
   );
 
   //CART
+
+  const [paymentMethod, setPaymentMethod] = useState(1);
+
   const cart = (
     <MantineProvider theme={{ colorScheme: "dark" }}>
       <Stepper
@@ -435,7 +435,10 @@ export default function Cart(props) {
           {address}
         </Stepper.Step>
         <Stepper.Step label="Bezahlen" icon={<CreditCard />}>
-          <Pay />
+          <Pay
+            paymentMethod={paymentMethod}
+            setPaymentMethod={setPaymentMethod}
+          />
         </Stepper.Step>
         <Stepper.Step label="Bestätigen" icon={<Check />}>
           Bestätigen
@@ -447,7 +450,9 @@ export default function Cart(props) {
         <Button variant="default" onClick={prevStep}>
           Zurück
         </Button>
-        <Button onClick={nextStep}>Weiter</Button>
+        <Button onClick={nextStep} disabled={active === 2 ? true : false}>
+          {active === 2 ? "Weiter & Bezahlen" : "Weiter"}
+        </Button>
       </Group>
     </MantineProvider>
   );

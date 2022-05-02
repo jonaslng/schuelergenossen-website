@@ -121,7 +121,6 @@ export default function Start(props) {
             />
           </fieldset>
         </div>
-        <div className="divider"></div>
       </div>
     </div>
   );

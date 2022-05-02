@@ -21,6 +21,7 @@ import {
   Check,
   Clock,
 } from "tabler-icons-react";
+import { getFormattedPrice } from "./functions/shopFunctions";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -98,7 +99,7 @@ export default function Product(props) {
             color="teal"
             style={{ fontSize: "3vh" }}
           >
-            {props.price}
+            {getFormattedPrice(props.price)}
           </Text>
           <Text color="gray" style={{ fontSize: "10px" }}>
             Endpreis, zzgl. <u style={{ cursor: "pointer" }}>Versandkosten</u>

@@ -21,6 +21,7 @@ import {
 } from "@mantine/core";
 import { useNotifications } from "@mantine/notifications";
 import { width } from "@mui/system";
+import { getFormattedPrice } from "./functions/shopFunctions";
 
 export default function ProductPreview(props) {
   const theme = useMantineTheme();
@@ -70,7 +71,7 @@ export default function ProductPreview(props) {
           </Group>
 
           <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-            {props.price}
+            {getFormattedPrice(props.price)}
           </Text>
 
           <Button

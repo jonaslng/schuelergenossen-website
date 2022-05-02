@@ -9,3 +9,10 @@ export function getStoredCart(cookie) {
     }
   }
 }
+export function getFormattedPrice(price) {
+  if (price.toString().includes(".")) {
+    return price.toString() + "0€";
+  } else {
+    return price.toString() + "€";
+  }
+}
