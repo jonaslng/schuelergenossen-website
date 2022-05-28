@@ -10,7 +10,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route index element={<App />} />
+        <Route path="*" element={<App />} />
         <Route path="hoodies" element={<Hoodies />} />
       </Routes>
     </BrowserRouter>

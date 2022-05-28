@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStyles, Text, Container, ActionIcon, Group, MantineProvider, Image } from '@mantine/core';
 import { BrandTwitter, BrandYoutube, BrandInstagram, BrandGithub } from 'tabler-icons-react';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -61,6 +62,7 @@ const useStyles = createStyles((theme) => ({
     fontSize: theme.fontSizes.sm,
     paddingTop: 3,
     paddingBottom: 3,
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 
     '&:hover': {
       textDecoration: 'underline',
@@ -70,6 +72,7 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontSize: theme.fontSizes.lg,
     fontWeight: 700,
+    fontSize: "20px",
     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
     marginBottom: theme.spacing.xs / 2,
     color:theme.white,
@@ -100,46 +103,40 @@ const useStyles = createStyles((theme) => ({
 
 let data = [
     {
-        title: 'About',
+        title: 'Rechtliches',
         links: [
             {
-                label: 'Test',
-                link: "/"
+                label: 'Impressum',
+                link: "/impressum"
             },
             {
-                label: 'Test',
-                link: "/"
+                label: 'Liefer- und Zahlungsbedingungen',
+                link: "/deliveryinfo"
+            },
+            {
+              label: "Datenschutz",
+              link: "/privacy"
+            },
+            {
+              label: "Cookie-Richtlinie",
+              link: "/cookie"
             }
         ]
     },
-    {
-        title: 'More',
-        links: [
-            {
-                label: 'Test',
-                link: "/"
-            },
-            {
-                label: 'Test',
-                link: "/"
-            }
-        ]
-    }
 ]
 
 export function Footer() {
   const { classes } = useStyles();
   const groups = data.map((group) => {
     const links = group.links.map((link, index) => (
-      <Text
+      <Link
         key={index}
         className={classes.link}
         component="a"
-        href={link.link}
-        onClick={(event) => event.preventDefault()}
+        to={link.link}
       >
         {link.label}
-      </Text>
+      </Link>
     ));
 
     return (
